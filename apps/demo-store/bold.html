@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#830fbd",
+                    "background-light": "#f7f6f8",
+                    "background-dark": "#1c1022",
+                },
+                fontFamily: {
+                    "display": ["Manrope", "sans-serif"]
+                },
+                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+        },
+    }
+</script>
+<style>
+    .fill-1 { font-variation-settings: 'FILL' 1; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+<title>Aura Wellness | Your Everyday Aesthetic</title>
+
+<!-- AOS SDK -->
+<script src="../../packages/sdk/dist/aos.js" data-key="pk_demo_001" data-api-url="http://localhost:8000"></script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+  <div class="layout-container flex h-full grow flex-col">
+
+    <!-- Sticky Navbar -->
+    <header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-20 py-3">
+      <div class="flex items-center gap-4 text-slate-900 dark:text-slate-100">
+        <div class="size-6 text-primary"><span class="material-symbols-outlined text-3xl">flare</span></div>
+        <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Aura Wellness</h2>
+      </div>
+      <div class="flex flex-1 justify-end gap-8">
+        <div class="hidden md:flex items-center gap-9">
+          <a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Shop</a>
+          <a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Community</a>
+          <a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Ingredients</a>
+        </div>
+        <button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity">
+          <span class="truncate">Cart</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex flex-col flex-1">
+      <!-- Hero Section -->
+      <div class="px-6 md:px-20 py-10 md:py-20">
+        <div class="flex flex-col gap-10 md:flex-row items-center max-w-7xl mx-auto">
+          <div class="flex flex-col gap-6 md:w-1/2">
+            <div class="flex flex-col gap-4 text-left">
+              <span class="text-primary font-bold tracking-widest text-xs uppercase">Est. 2024 &middot; Aesthetic Wellness</span>
+              <h1 class="text-slate-900 dark:text-slate-100 text-4xl md:text-6xl font-black leading-tight tracking-[-0.033em]">
+                Glow, Sleep, and Focus for Your Everyday Aesthetic
+              </h1>
+              <p class="text-slate-600 dark:text-slate-400 text-base md:text-xl font-normal leading-relaxed">
+                Formulas that fit your feed and your routine. Tap in to join the Aura community and elevate your daily ritual.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-4">
+              <button class="flex min-w-[160px] cursor-pointer items-center justify-center rounded-xl h-12 md:h-14 px-6 bg-primary text-white text-base font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+                <span>Shop the Routine</span>
+              </button>
+              <button class="flex min-w-[160px] cursor-pointer items-center justify-center rounded-xl h-12 md:h-14 px-6 bg-primary/10 text-primary text-base font-bold hover:bg-primary/20 transition-colors">
+                <span>See Ingredients</span>
+              </button>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 aspect-square md:aspect-[4/5] bg-slate-200 dark:bg-slate-800 rounded-3xl overflow-hidden shadow-2xl relative">
+            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMwzywXzY5EsF1ZP0AsQ-v2Y-2vj6AnsuKh26KY0RROad9-1Jawmoh-oueOMVVjIoUbQ8hy_NlbStav2LkU5QYIiuT9As7Sn6QV9ys6Lond_sR-YTuORNU3vgHbVG_vr8_PtioCIBd3k7VZg37xJ5MiAdSKbnTZTQYs0jAN00PTnvfQ4kT28985FEgwV6kh4vmq9PPsZIqcDrMLtwq1ZGB8km1J2Dy4IiprrKmys842D5DFftENtEVQHzFlEahTH5Ung2U9ecwwiI"/>
+            <div class="absolute bottom-6 left-6 right-6 bg-white/20 backdrop-blur-lg border border-white/30 rounded-2xl p-4 text-white">
+              <p class="text-sm font-medium">"My morning skin ritual just got an upgrade."</p>
+              <p class="text-xs opacity-80">@sarah_minimalist</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured on Reels Strip -->
+      <div class="bg-primary/5 py-8 border-y border-primary/10">
+        <div class="px-6 md:px-20 max-w-7xl mx-auto">
+          <h3 class="text-slate-900 dark:text-slate-100 text-sm font-bold uppercase tracking-widest mb-6 opacity-70">Featured on Reels</h3>
+          <div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+            <div class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-slate-800 px-5 shadow-sm border border-slate-200 dark:border-slate-700">
+              <div class="w-6 h-6 rounded-full bg-slate-300 overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF59irlaTbnoWVB7p75XqgF7E_kHcl3KBYHbKjFGFewXHbOxyhskBgt2n64asIVlQRsadckw3resXv5EGhC0vsqvbHF6j9_OgM4UpPsfrIbA_qHg8ZoCJs9F_2nAOI1lfbvAu_CFZoJbkZaWxJ_0Mzl4A1pPqCJEvUb0i8WN7WD2Zc679yKvf3nBmWEkuO2D7FDzDw3eYBAfY9sOK80xkVUb2Odiw9sFT_Fw-r9Tgu8hdn3TZTtgSjiMwqVGWVWw8Skn_nHc6-yzY"/></div>
+              <p class="text-sm font-semibold">@aura_glow</p>
+            </div>
+            <div class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-slate-800 px-5 shadow-sm border border-slate-200 dark:border-slate-700">
+              <div class="w-6 h-6 rounded-full bg-slate-300 overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUGQImhAHIMxuXjTjgNGBlcJOIzGRyCpadRle0cS_CGdgEG5VgrEubc01g9nFEh9ogU95RtcGD5WCWohvgFEnGxtZOAVbfjKYgsg_lddC64_qE8PYNZyYeiPWZJNOpoXBMwX02clWjWi-8xzEew52md52VnAWYAmSXMV_TCKKAf-l-tlob3rbtyQOeS5-w6sHrYqN0dizp6hwpkhSncoCmtd9kLl5JIE0fYa3WpIE1oICHfao1WF6FtqtvCLbP4tpANSrpJGlwS2E"/></div>
+              <p class="text-sm font-semibold">@morning_routine</p>
+            </div>
+            <div class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-slate-800 px-5 shadow-sm border border-slate-200 dark:border-slate-700">
+              <div class="w-6 h-6 rounded-full bg-slate-300 overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu5iP984NZXeXC6ThYCyEDcw8FyOEh2nvHZaw8gly0HiAp8onIPaXeAwCk6Ecn-J9r8kCPFiVBSDMd8d_GiCDZvx6SvbZN90LDMa0xt0LJMf4vPfFDNqqNaP9ALgX1ExD4HE-lp9wiOv0YWicSoK3-u0dzALXTPgEC9jJZ0IV2BdfdTOi9wUEV-1mD5j0SztHjpURImWjJSlAjOZ7W1y_o7TorfWlTEOEWnsfYWNU6MrifoTW7t_jjcKve9C25Wp6GpDeOlMbRgI4"/></div>
+              <p class="text-sm font-semibold">@bedside_aesthetic</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Instagram Grid -->
+      <div class="px-6 md:px-20 py-20 max-w-7xl mx-auto w-full">
+        <div class="flex justify-between items-end mb-10">
+          <div>
+            <h2 class="text-3xl font-black tracking-tight">From the Feed</h2>
+            <p class="text-slate-500 mt-2">Tag @aurawellness to be featured</p>
+          </div>
+          <a class="text-primary font-bold flex items-center gap-2" href="#">View on IG <span class="material-symbols-outlined">arrow_forward</span></a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="aspect-square relative group overflow-hidden rounded-xl">
+            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxMFd0b_0ikaTYH4hYBG-qZWuCcs-2ktXvUVTvxbY3A3fn6cx3gGzwnLinl3svX6Q5KKjc1Zv9mvhtevK97Z7N3zkuPur8Cbzeegndbbwi1KOzyWvhBV5C7N9zsMwDKyZrDPcqCHRS8-wh17N5ts9pWVpFowPyDFY7NEbaHigI_o22tXITTdvYHPb15j5WbjrfSMPjR4Jpc1xWimYp9JodSL05qu1nrEotKmak816IA69NRCPXztYH_r-CHoAlKJn8vOITgtxcBzM"/>
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-6 text-white">
+              <div class="flex items-center gap-1"><span class="material-symbols-outlined fill-1">favorite</span> 1.2k</div>
+              <div class="flex items-center gap-1"><span class="material-symbols-outlined fill-1">chat_bubble</span> 45</div>
+            </div>
+          </div>
+          <div class="aspect-square relative group overflow-hidden rounded-xl">
+            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6ozptAMK-2eQnIujsHAnSDLhmIxp0rkYAfl72NMZMNtqvb5Q6FGZpFBre8grrCsud8EFyTbka8BFf5gnhkb43OEdXzskkiCuuwivazrVyG9-lHflGL-gq9o4cz4sTa0bhyHX2Pug1gaDQYdgW7lfqbbu1qtDFjVBFSu9MNqUN0LGpgkQOI6x-RIiNC8ckmE-eQeT6ehxk5TLBCpXtfxbnMEwevIRjRrIYsNJTwlOiFwGKuMekCE-k2GtqGtHUQ8W2hTYeMyLpwTQ"/>
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-6 text-white">
+              <div class="flex items-center gap-1"><span class="material-symbols-outlined fill-1">favorite</span> 842</div>
+              <div class="flex items-center gap-1"><span class="material-symbols-outlined fill-1">chat_bubble</span> 12</div>
+            </div>
+          </div>
+          <div class="aspect-square relative group overflow-hidden rounded-xl">
+            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJZ-MilXh6u1r4Asby9OiinOPO3g8s4QQ9zytem-saDhncpQHCsl3c5-pbzgC3U7kRnIrq667IkScv5nWzNrtipHpbMxbxBdSsaQTkgpDycCRzbrFEQW-4sdHD0tXb3Qoyiiv67lm_v-EpOFhvMsY3Z3xOrpvA9R2owWfU-7_IS2FbTBOyL9t4G2SWT10Zmdg_hf6Gb9G1HHVIBNiafo42YsF-JL8lp_LNlTnv2AXKZNcH-WTYYxMnsY82zBz-myrggWC68CvVSUQ"/>
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-6 text-white">
+              <div class="flex items-center gap-1"><span class="material-symbols-outlined fill-1">favorite</span> 2.5k</div>
+              <div class="flex items-center gap-1"><span class="material-symbols-outlined fill-1">chat_bubble</span> 89</div>
+            </div>
+          </div>
+          <div class="aspect-square relative group overflow-hidden rounded-xl">
+            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVKs9j8qx2xTmlUzBBSVIv4hP4i-9sKQpUTZX-s8YkH0U0S2EgJurNXWwXKoDL7hg4DbSV1-Zw4_s1NaeUtVZwP1bvrHA5e5Z2x_nOa-hiTyEfXVwFWAwwLxV3womlHhuXlHUmhzlg9zJmAIgE0aY3dK9yP7gdnfCA-wV5mxVo4-pjAL8GXpgh5mCi_bxikHxV7EQWekaS11b8XgxIVhcp-oj2psCQf16c68FKFlFcYIECCRjp8huib8TneHIUJZ3S7EZRi2ckS5M"/>
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-6 text-white">
+              <div class="flex items-center gap-1"><span class="material-symbols-outlined fill-1">favorite</span> 1.1k</div>
+              <div class="flex items-center gap-1"><span class="material-symbols-outlined fill-1">chat_bubble</span> 32</div>
+            </div>
+          </div>
+          <div class="aspect-square relative group overflow-hidden rounded-xl">
+            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8RsgHOwg60gDM0B7EMt0Z3Xx8TYSb4KOAJwWpMDirdejSTWq57fX4sZnHKP8l59jN72TFjHcg693KFf6adHv4EPuet4m4-LofPyToBCvaBblZsgE8hweMxZMEnEuPO--kSH6K1FI4TlQ9KWWsz2RjmgEerrZx6WlcoNxSvATfJTqD5WgA0pMGkg4LH5UA2pvVHzv73XT2HZyZ-45eC0RDrnBaFbhCG9-iO_IOIKx4pvJDkMXzWzAfnDGMv8MrulGmx9uz2URN868"/>
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-6 text-white">
+              <div class="flex items-center gap-1"><span class="material-symbols-outlined fill-1">favorite</span> 950</div>
+              <div class="flex items-center gap-1"><span class="material-symbols-outlined fill-1">chat_bubble</span> 18</div>
+            </div>
+          </div>
+          <div class="aspect-square relative group overflow-hidden rounded-xl">
+            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFVogReGIKc54QdE9hciDHgXodLqzdLW6jivBj5x2hAbZ6mgeW6qnERDkPNX2nyDnZGBu9CB5vFlyhTk1Gy4RyAJIMgBoXoX_GHJ3PVZN_sI42Ys8FeZgxxdVhOBe5JRxSVpnYEsE1wZJ8-n__2vc33Gavc0sD_W8I019qkCvfEMFqzZOyQxKRkdZpR5695i8J60h-WAWsoNHrQ54UKcoIVvpCLAQ0Mtu3CTP5d-xeAFrJekLuMSH_4wv56J7-W9GKEssve3ULN8Q"/>
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-6 text-white">
+              <div class="flex items-center gap-1"><span class="material-symbols-outlined fill-1">favorite</span> 3.1k</div>
+              <div class="flex items-center gap-1"><span class="material-symbols-outlined fill-1">chat_bubble</span> 112</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Best Sellers -->
+      <div class="bg-white dark:bg-slate-900/50 py-20">
+        <div class="px-6 md:px-20 max-w-7xl mx-auto w-full">
+          <h2 class="text-3xl font-black mb-12 text-center">Shop Best Sellers</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-background-light dark:bg-slate-800 rounded-2xl p-6 flex flex-col gap-4 border border-slate-200 dark:border-slate-700">
+              <div class="aspect-square rounded-xl overflow-hidden bg-white mb-2">
+                <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBLhAMBKWH2f8886jtp4KApR7w3lPCIJ_wrFPx3CKSwTDRpuXV010deOniEb2tM6b9E9Km0KI1ZV8JASBFPDzwhvElkCQWBAuMPA_ZZgOu1sIGfrXyGInZOcDgHvuurXfU2MdbXJh6zvCuec0yQmMsZph5SFWv9Kke16yWBppI_CzrbUwlUDIkT_DXRVALoUMQbiqIZHfsDaZsujALaFodhBDJPO2Aqy5zLklVdxozH3KiUbOSIGHFOckwVFr689YZeRBpkAu6nL0"/>
+              </div>
+              <div><h3 class="text-xl font-bold">Aura Glow</h3><p class="text-slate-500 text-sm">Skin Radiance Complex</p></div>
+              <div class="flex justify-between items-center mt-auto">
+                <span class="text-lg font-black">$42.00</span>
+                <button class="add-to-cart w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center"><span class="material-symbols-outlined">add</span></button>
+              </div>
+            </div>
+            <div class="bg-primary/10 dark:bg-primary/20 rounded-2xl p-8 flex flex-col gap-4 border-2 border-primary relative">
+              <div class="absolute -top-4 right-6 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Best Value</div>
+              <div class="aspect-square rounded-xl overflow-hidden bg-white mb-2 shadow-inner">
+                <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfsEpqP3piIiS_UHu_cz7g4OGTea0ko_Zz_TXpvBWzrHH93wDuCwD5tfCyfE3h8_1vCQD7va-Ts_DLqv83hyeS8tS0Wo2_pTsVqaCSn0GUYsZqt5vULGGmbfOquWzujeB9c6D5PCq_dmViO6vZG6uR749sz_E91fR7lXveDJlUAg2oW_C0ilvl7uexkEImF8FcQX-Z0swskXrXEsqcvcV2FzXplyeJyDYi39JkbIzaZVFhRtLA5UppTPXkXH6kUs-B44HUBDTmdWU"/>
+              </div>
+              <div>
+                <h3 class="text-2xl font-black text-primary">Insta Routine Stack</h3>
+                <p class="text-slate-600 dark:text-slate-300 text-sm mt-1">Glow + Sleep + Focus. Complete aesthetic kit.</p>
+                <div class="mt-4 inline-block bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded">SAVE 20%</div>
+              </div>
+              <div class="flex justify-between items-center mt-auto">
+                <div class="flex flex-col"><span class="text-xs line-through text-slate-400">$126.00</span><span class="text-2xl font-black text-slate-900 dark:text-white">$98.00</span></div>
+                <button class="add-to-cart px-6 h-12 rounded-xl bg-primary text-white font-bold hover:opacity-90 transition-opacity">Add Bundle</button>
+              </div>
+            </div>
+            <div class="bg-background-light dark:bg-slate-800 rounded-2xl p-6 flex flex-col gap-4 border border-slate-200 dark:border-slate-700">
+              <div class="aspect-square rounded-xl overflow-hidden bg-white mb-2">
+                <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXT3nTLo2NVAVCqkFky3IpNU6dG9MZCnL5Ci8dcvijTn2nLdkPJOddQTLCRkG6F-QMhbedwBqlE2wFOM5UEN-i_EMx8Zsnfq3FbUqsu4pGknqHkWI2Wp0z1a0kE_bYcODxDqXWYEKOMddABnvV3OpvuVJUaRrvuA00OUZmP_qnUkict9zmASSlv22l5VOlpq8TLtbchLRfSGVyhJl0w4v9llSuBlE9HcynAyz1mG62__avQ7bt5bF9LE01uFuC-wOAuRC1LOgNftk"/>
+              </div>
+              <div><h3 class="text-xl font-bold">Aura Sleep</h3><p class="text-slate-500 text-sm">Magnesium + L-Theanine Blend</p></div>
+              <div class="flex justify-between items-center mt-auto">
+                <span class="text-lg font-black">$38.00</span>
+                <button class="add-to-cart w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center"><span class="material-symbols-outlined">add</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonials -->
+      <div class="px-6 md:px-20 py-24 max-w-7xl mx-auto w-full">
+        <h2 class="text-3xl font-black text-center mb-16 italic">What the community is saying</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div class="flex flex-col gap-6 p-8 bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700">
+            <div class="flex items-center gap-3">
+              <img class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDos2SKou8IDCkE0W0qIfhAPI4DVM3ygYuc7BT0u1sI0kYZG4qhrfZvGj_sMZgXMAhMo40S1bV4faHADdBWBoNLn8SwQTzCMLPKzaoQmCp-65rWFv47OMz7vHA1r0lo3cZkoklqiPdDxc6CQO_-457oFpdNc14ABOdmGH43fEFlupDewJMjRHRc5ttVuggA9HNqXdXL7Nruh75ssf13iwDYqCCDBg4L2e8A5BBhq4EIlWCU0GlOdOMN4qo6seZ3AWTYJmAL_qT6GGY"/>
+              <div><h4 class="font-bold text-sm">Jamie Lee</h4><p class="text-primary text-xs font-semibold">@wellnesswithjamie</p></div>
+            </div>
+            <p class="text-lg leading-relaxed italic text-slate-700 dark:text-slate-300">"Literally changed my morning routine. No more jitters, just pure aesthetic focus."</p>
+          </div>
+          <div class="flex flex-col gap-6 p-8 bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700">
+            <div class="flex items-center gap-3">
+              <img class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzGdaEJBE5pQzRlBjBEN1qFPny7-ssZTbj0weg3RE25Tm5_r5dlIKdIXVjLgvUcXgveQsXPxHGgdTO2e3Q8HyNVlgQOFc-Ap_5o3DD90MlfSiuki8XRQDxdI9ktYRIRJZR2qAlXPM6vh5EWlV-8Vg_xnAdYwLQXmPjerfnJIhuQiOnNLZGcdDyx9_AbVsP3fXCU1NtHzzIodtSDhkgNg3Ic4gQRtRztkw9e9AV9hz_KP5TgfcupYVOayTDIxwdTodhIntfXOIzXy4"/>
+              <div><h4 class="font-bold text-sm">Marcus Chen</h4><p class="text-primary text-xs font-semibold">@marcus_minimal</p></div>
+            </div>
+            <p class="text-lg leading-relaxed italic text-slate-700 dark:text-slate-300">"Aura Sleep is the final boss of bedtime routines."</p>
+          </div>
+          <div class="flex flex-col gap-6 p-8 bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700">
+            <div class="flex items-center gap-3">
+              <img class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtP3G_w8ALdHNOvGGpLAJ28wMo7nFvcbwNJC_TiqRAe38fQejYMvr_8IIDBBGKgVPTxeOI2SSVBglq_kcqyERnO2ytbdVghUGsE8LeB-NCh1-XuwsNpO97l6UV0kB4V7SivbIAJjfdx-piPPDu-eZPUACGyBi_tsQk5PRbXR2qLeqd3nMwF0EoNEMVlQ_gZzldxiX122lJiYlIwsg4MeBmV8l5zFsKK4gOPiSmfnPcP0ATZE-_1SgwYib5idi9FXYp-SiqvBlYQVo"/>
+              <div><h4 class="font-bold text-sm">Elena Rodriguez</h4><p class="text-primary text-xs font-semibold">@aesthetic_elena</p></div>
+            </div>
+            <p class="text-lg leading-relaxed italic text-slate-700 dark:text-slate-300">"If you're not stacking Aura Glow with your morning matcha, you're missing out."</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- AOS Demo Controls -->
+    <section class="py-12 bg-primary/5 border-t-2 border-primary/20">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h3 class="text-lg font-bold text-primary mb-2">Adaptive-OS Demo Controls</h3>
+        <p class="text-sm text-slate-600 mb-2">Current Vibe: <span class="font-bold text-primary">Bold (Instagram Traffic)</span></p>
+        <p class="text-sm text-slate-500 mb-6">This entire page was dynamically selected based on the <code class="bg-white px-1 rounded">utm_source=ig</code> parameter.</p>
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+          <a href="/?utm_source=tiktok&utm_campaign=summer_vibes" class="px-4 py-2 bg-white text-sm font-medium rounded-lg shadow-sm hover:shadow transition border border-primary/20">TikTok Traffic</a>
+          <a href="/?utm_source=pinterest&utm_campaign=quiet_minimal" class="px-4 py-2 bg-white text-sm font-medium rounded-lg shadow-sm hover:shadow transition border border-primary/20">Pinterest Traffic</a>
+          <a href="/?utm_source=ig&utm_campaign=bold_fitness" class="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg shadow-sm">Instagram Traffic (Current)</a>
+          <a href="/" class="px-4 py-2 bg-white text-sm font-medium rounded-lg shadow-sm hover:shadow transition border border-gray-200 text-gray-600">Direct (Default)</a>
+        </div>
+        <div class="flex justify-center gap-3">
+          <button onclick="AOS.track('conversion', { product: 'demo' })" class="px-5 py-2.5 bg-green-600 text-white text-sm font-semibold rounded-lg hover:bg-green-700 transition">Simulate Conversion</button>
+          <button onclick="AOS.track('click', { element: 'demo-cta' })" class="px-5 py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition">Simulate Click</button>
+        </div>
+        <div id="aos-debug" class="mt-6 text-xs text-left bg-white rounded-lg p-4 border border-primary/20 font-mono max-w-xl mx-auto">
+          <div class="font-bold text-primary mb-1">AOS Debug Info:</div>
+          <div id="aos-debug-content">Loading...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 px-6 md:px-20">
+      <div class="max-w-7xl mx-auto text-center text-xs text-slate-400">
+        <p>&copy; 2024 Aura Wellness Inc. All rights reserved. | Demo store for Adaptive-OS</p>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<script>
+  setTimeout(function() {
+    var content = document.getElementById('aos-debug-content');
+    if (content) {
+      var sessionId = sessionStorage.getItem('aos_session_id') || 'none';
+      var variationId = sessionStorage.getItem('aos_variation_id') || 'none';
+      var params = new URLSearchParams(window.location.search);
+      var agentRouted = params.get('aos_routed') === '1' ? 'Yes (Agent)' : 'No (Direct)';
+      content.innerHTML =
+        'Session: ' + sessionId + '<br>' +
+        'Variation: ' + variationId + '<br>' +
+        'Active Vibe: <strong>bold (Instagram)</strong><br>' +
+        'Agent Routed: <strong>' + agentRouted + '</strong><br>' +
+        'UTM Source: ' + (params.get('utm_source') || 'none') + '<br>' +
+        'Referrer: ' + (document.referrer || 'none');
+    }
+  }, 2000);
+</script>
+</body></html>

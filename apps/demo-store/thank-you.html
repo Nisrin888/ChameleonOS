@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You — Aura Wellness</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS SDK — Success Pixel: fires conversion on page load -->
+  <script src="../../packages/sdk/dist/aos.js" data-key="pk_demo_001" data-api-url="http://localhost:8000"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-white font-sans antialiased min-h-screen flex items-center justify-center">
+  <div class="text-center max-w-md px-6">
+    <div class="text-6xl mb-6">🎉</div>
+    <h1 class="text-3xl font-bold mb-4">Thank You!</h1>
+    <p class="text-gray-600 mb-8">Your order has been placed. You'll receive a confirmation email shortly.</p>
+    <a href="/" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition">
+      Continue Shopping
+    </a>
+  </div>
+
+  <!-- Success Pixel: fire conversion event on load -->
+  <script>
+    // Wait for AOS SDK to initialize, then fire conversion
+    setTimeout(function() {
+      if (typeof AOS !== 'undefined' && AOS.track) {
+        AOS.track('conversion', { page: 'thank-you', value: '49.00' });
+        console.log('[AOS Demo] Conversion event fired on thank-you page');
+      }
+    }, 2000);
+  </script>
+</body>
+</html>

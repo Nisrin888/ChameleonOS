@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script>
+    // AOS Agent-Driven Router — hits /v1/handshake and redirects based on agent's vibe decision
+    (function() {
+      var VIBE_PAGES = {
+        casual: 'casual.html',
+        bold: 'bold.html',
+        minimalist: 'minimalist.html'
+      };
+
+      // Skip routing if already on a vibe page (aos_routed flag)
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('aos_routed') === '1') return;
+
+      // Build context for handshake
+      var context = {
+        referrer: document.referrer || '',
+        url: window.location.href,
+        timestamp: new Date().toISOString()
+      };
+      var utm = params.get('utm_source');
+      if (utm) context.utm_source = utm;
+
+      // Only route if there's a UTM or referrer to classify
+      if (!utm && !document.referrer) return;
+
+      // POST to handshake — agent makes the routing decision
+      fetch('http://localhost:8000/v1/handshake', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ public_key: 'pk_demo_001', context: context })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var vibe = data.vibe || 'default';
+        var page = VIBE_PAGES[vibe];
+        if (page) {
+          // Redirect to vibe page, passing vibe info for debug panel
+          params.set('aos_vibe', vibe);
+          params.set('aos_routed', '1');
+          window.location.replace(page + '?' + params.toString());
+        }
+        // If vibe is "default" or unknown, stay on this page
+      })
+      .catch(function() {
+        // On error, stay on default page — graceful degradation
+      });
+    })();
+</script>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#830fbd",
+                    "background-light": "#f7f6f8",
+                    "background-dark": "#1c1022",
+                },
+                fontFamily: {
+                    "display": ["Manrope", "sans-serif"]
+                },
+                borderRadius: {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+            },
+        },
+    }
+</script>
+<title>Aura Wellness | Science-Backed Supplements</title>
+
+<!-- AOS SDK -->
+<script src="../../packages/sdk/dist/aos.js" data-key="pk_demo_001" data-api-url="http://localhost:8000"></script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+<!-- Sticky Navigation -->
+<nav class="sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-3xl">flare</span>
+        <span class="text-xl font-extrabold tracking-tight">Aura.</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8">
+        <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Shop</a>
+        <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Science</a>
+        <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Reviews</a>
+        <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">About</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <button class="bg-primary text-white px-5 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-lg">shopping_bag</span>
+          Cart (0)
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- Hero Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="flex flex-col gap-8">
+        <div class="space-y-4">
+          <h1 class="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight">
+            Wellness That <span class="text-primary">Fits Your Life</span>
+          </h1>
+          <p class="text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed">
+            Science-backed supplements designed for real results. Join tens of thousands who upgraded their routines with our premium formulas.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <button class="bg-primary text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-primary/20 transition-all">
+            Shop Now
+          </button>
+          <button class="bg-primary/10 text-primary px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary/20 transition-all">
+            Learn More
+          </button>
+        </div>
+        <!-- Trust Indicators -->
+        <div class="grid grid-cols-2 gap-4 mt-4">
+          <div class="p-4 rounded-xl border border-primary/10 bg-white/50 dark:bg-slate-800/50">
+            <div class="flex items-center gap-1 text-yellow-500 mb-1">
+              <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+            </div>
+            <p class="font-bold text-lg">4.9/5</p>
+            <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold">2,400+ Reviews</p>
+          </div>
+          <div class="p-4 rounded-xl border border-primary/10 bg-white/50 dark:bg-slate-800/50">
+            <span class="material-symbols-outlined text-primary mb-1">local_shipping</span>
+            <p class="font-bold text-lg">Free Shipping</p>
+            <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold">Orders over $50</p>
+          </div>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5 p-8 flex items-center justify-center">
+          <img alt="Premium Supplement Bottles" class="rounded-2xl shadow-2xl object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhXEsYK11AOtLM5btP4vPJDbcmqUiADCN29TE1pgbpnlo4vJ7NJipXlVOuueVUb5iEcdecL4dpw4FM1AGDHrh9sTPb6QudW8O46u14w8jaZ8HTSF4xdx7yxzbTPPro7Vb-vfdvf7BMXa-Y1IQbMAzXRYNG2FG1mVDjTnjgXUPXKPeivfbw9IuBahcga1JOOfDzp6mu5HsfUatXYgICv0OfgyW_7Z1_MaptP0mWtggnSqAWMJOx5RWqaDcKZ_f0gHgTN61ooM8Zl4I"/>
+        </div>
+        <div class="absolute -z-10 -top-12 -right-12 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof Strip -->
+  <div class="w-full bg-primary/5 py-4 border-y border-primary/10">
+    <p class="text-center text-sm font-medium text-primary/80 tracking-widest uppercase">
+      Trusted by 50,000+ customers across the globe
+    </p>
+  </div>
+
+  <!-- Best Sellers -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="flex justify-between items-end mb-12">
+      <div>
+        <h2 class="text-3xl font-extrabold mb-2">Best Sellers</h2>
+        <p class="text-slate-500">Our most-loved formulas, backed by clinical research.</p>
+      </div>
+      <a class="text-primary font-bold flex items-center gap-1 hover:underline" href="#">
+        View All <span class="material-symbols-outlined">arrow_forward</span>
+      </a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-primary/5 shadow-sm hover:shadow-xl transition-all group">
+        <div class="aspect-square rounded-xl bg-green-50 dark:bg-green-900/10 mb-6 flex items-center justify-center relative overflow-hidden">
+          <span class="material-symbols-outlined text-6xl text-green-500 group-hover:scale-110 transition-transform">eco</span>
+          <div class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter text-slate-800">Skin Health</div>
+        </div>
+        <h3 class="text-xl font-bold mb-1">Daily Glow Complex</h3>
+        <p class="text-sm text-slate-500 mb-4">Vegan collagen and biotin for radiance.</p>
+        <div class="flex items-center justify-between mt-auto">
+          <span class="text-2xl font-black">$35</span>
+          <button class="add-to-cart bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-primary/90">
+            <span class="material-symbols-outlined text-sm">add</span> Add to Cart
+          </button>
+        </div>
+      </div>
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-primary/5 shadow-sm hover:shadow-xl transition-all group">
+        <div class="aspect-square rounded-xl bg-blue-50 dark:bg-blue-900/10 mb-6 flex items-center justify-center relative overflow-hidden">
+          <span class="material-symbols-outlined text-6xl text-blue-500 group-hover:scale-110 transition-transform">opacity</span>
+          <div class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter text-slate-800">Rest</div>
+        </div>
+        <h3 class="text-xl font-bold mb-1">Deep Sleep Formula</h3>
+        <p class="text-sm text-slate-500 mb-4">Magnesium and L-Theanine for deep rest.</p>
+        <div class="flex items-center justify-between mt-auto">
+          <span class="text-2xl font-black">$30</span>
+          <button class="add-to-cart bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-primary/90">
+            <span class="material-symbols-outlined text-sm">add</span> Add to Cart
+          </button>
+        </div>
+      </div>
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-primary/5 shadow-sm hover:shadow-xl transition-all group">
+        <div class="aspect-square rounded-xl bg-orange-50 dark:bg-orange-900/10 mb-6 flex items-center justify-center relative overflow-hidden">
+          <span class="material-symbols-outlined text-6xl text-orange-500 group-hover:scale-110 transition-transform">bolt</span>
+          <div class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter text-slate-800">Cognitive</div>
+        </div>
+        <h3 class="text-xl font-bold mb-1">Focus Stack</h3>
+        <p class="text-sm text-slate-500 mb-4">Nooptropics for sustained mental clarity.</p>
+        <div class="flex items-center justify-between mt-auto">
+          <span class="text-2xl font-black">$40</span>
+          <button class="add-to-cart bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-primary/90">
+            <span class="material-symbols-outlined text-sm">add</span> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="bg-white dark:bg-slate-900 py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-extrabold mb-4">Real Results from Real People</h2>
+        <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-8 rounded-2xl bg-background-light dark:bg-background-dark border border-primary/5 flex flex-col gap-4">
+          <div class="flex text-primary mb-2">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+          </div>
+          <p class="text-slate-700 dark:text-slate-300 italic leading-relaxed">
+            "The Daily Glow Complex has completely cleared my hormonal acne within just three weeks. My skin has never looked this vibrant."
+          </p>
+          <div class="mt-4">
+            <p class="font-bold">Sarah M.</p>
+            <p class="text-xs text-slate-500">Verified Buyer &middot; Skin Improvement</p>
+          </div>
+        </div>
+        <div class="p-8 rounded-2xl bg-background-light dark:bg-background-dark border border-primary/5 flex flex-col gap-4">
+          <div class="flex text-primary mb-2">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+          </div>
+          <p class="text-slate-700 dark:text-slate-300 italic leading-relaxed">
+            "Finally, a sleep aid that doesn't leave me groggy. The Deep Sleep Formula helps me fall asleep fast and stay asleep all night."
+          </p>
+          <div class="mt-4">
+            <p class="font-bold">David K.</p>
+            <p class="text-xs text-slate-500">Verified Buyer &middot; Sleep Improvement</p>
+          </div>
+        </div>
+        <div class="p-8 rounded-2xl bg-background-light dark:bg-background-dark border border-primary/5 flex flex-col gap-4">
+          <div class="flex text-primary mb-2">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">star</span>
+          </div>
+          <p class="text-slate-700 dark:text-slate-300 italic leading-relaxed">
+            "Focus Stack is my go-to for deep work sessions. No jitters, just clean mental energy and absolute productivity."
+          </p>
+          <div class="mt-4">
+            <p class="font-bold">Elena R.</p>
+            <p class="text-xs text-slate-500">Verified Buyer &middot; Focus &amp; Productivity</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ AOS DEMO CONTROLS ============ -->
+<section class="py-12 bg-primary/5 border-t-2 border-primary/20">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h3 class="text-lg font-bold text-primary mb-2">Adaptive-OS Demo Controls</h3>
+    <p class="text-sm text-slate-600 mb-2">Current Vibe: <span class="font-bold text-primary">Default (Direct Traffic)</span></p>
+    <p class="text-sm text-slate-500 mb-6">Click a traffic source below to see the <strong>entire page</strong> transform to match that audience.</p>
+
+    <div class="flex flex-wrap justify-center gap-3 mb-6">
+      <a href="?utm_source=tiktok&utm_campaign=summer_vibes" class="px-4 py-2 bg-white text-sm font-medium rounded-lg shadow-sm hover:shadow transition border border-primary/20 hover:border-primary/40">
+        TikTok Traffic
+      </a>
+      <a href="?utm_source=pinterest&utm_campaign=quiet_minimal" class="px-4 py-2 bg-white text-sm font-medium rounded-lg shadow-sm hover:shadow transition border border-primary/20 hover:border-primary/40">
+        Pinterest Traffic
+      </a>
+      <a href="?utm_source=ig&utm_campaign=bold_fitness" class="px-4 py-2 bg-white text-sm font-medium rounded-lg shadow-sm hover:shadow transition border border-primary/20 hover:border-primary/40">
+        Instagram Traffic
+      </a>
+      <a href="/" class="px-4 py-2 bg-white text-sm font-medium rounded-lg shadow-sm hover:shadow transition border border-gray-200 text-gray-600">
+        Direct (Default)
+      </a>
+    </div>
+
+    <div class="flex justify-center gap-3">
+      <button onclick="AOS.track('conversion', { product: 'demo' })" class="px-5 py-2.5 bg-green-600 text-white text-sm font-semibold rounded-lg hover:bg-green-700 transition">
+        Simulate Conversion
+      </button>
+      <button onclick="AOS.track('click', { element: 'demo-cta' })" class="px-5 py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition">
+        Simulate Click
+      </button>
+    </div>
+
+    <div id="aos-debug" class="mt-6 text-xs text-left bg-white rounded-lg p-4 border border-primary/20 font-mono max-w-xl mx-auto">
+      <div class="font-bold text-primary mb-1">AOS Debug Info:</div>
+      <div id="aos-debug-content">Loading...</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-slate-900 text-slate-400 py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+      <div>
+        <div class="flex items-center gap-2 text-white mb-6">
+          <span class="material-symbols-outlined text-primary text-2xl">flare</span>
+          <span class="text-xl font-extrabold tracking-tight">Aura.</span>
+        </div>
+        <p class="text-sm leading-relaxed">Science-led wellness for the modern lifestyle.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-6">Support</h4>
+        <ul class="space-y-4 text-sm">
+          <li><a class="hover:text-primary transition-colors" href="#">Returns</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Shipping</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-6">Company</h4>
+        <ul class="space-y-4 text-sm">
+          <li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Science</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-6">Contact</h4>
+        <ul class="space-y-4 text-sm">
+          <li>hello@aurawellness.com</li>
+          <li>1-800-AURA-WELL</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-16 pt-8 border-t border-slate-800 text-center text-xs">
+      &copy; 2024 Aura Wellness Inc. All rights reserved. | Demo store for Adaptive-OS
+    </div>
+  </div>
+</footer>
+
+<script>
+  setTimeout(function() {
+    var content = document.getElementById('aos-debug-content');
+    if (content) {
+      var sessionId = sessionStorage.getItem('aos_session_id') || 'none';
+      var variationId = sessionStorage.getItem('aos_variation_id') || 'none';
+      var params = new URLSearchParams(window.location.search);
+      content.innerHTML =
+        'Session: ' + sessionId + '<br>' +
+        'Variation: ' + variationId + '<br>' +
+        'Active Vibe: <strong>default</strong><br>' +
+        'UTM Source: ' + (params.get('utm_source') || 'none') + '<br>' +
+        'Referrer: ' + (document.referrer || 'none');
+    }
+  }, 2000);
+</script>
+</body></html>

@@ -1,0 +1,9 @@
+{
+  "name": "@aos/demo-store",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve . -l 3000",
+    "build": "echo 'Static site — no build step'"
+  }
+}

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#830fbd",
+                    "background-light": "#f7f6f8",
+                    "background-dark": "#1c1022",
+                },
+                fontFamily: {
+                    "display": ["Manrope", "sans-serif"]
+                },
+                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+        },
+    }
+</script>
+<style>
+    .tiktok-gradient { background: linear-gradient(45deg, #25F4EE, #FE2C55, #000000); }
+    .urgent-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .7; } }
+    .fill-1 { font-variation-settings: 'FILL' 1; }
+</style>
+<title>Aura Wellness | TikTok's Favorite Stack</title>
+
+<!-- AOS SDK -->
+<script src="../../packages/sdk/dist/aos.js" data-key="pk_demo_001" data-api-url="http://localhost:8000"></script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+
+<!-- Urgency Banner -->
+<div class="bg-primary text-white py-2 px-4 text-center text-sm font-bold tracking-wider sticky top-0 z-50">
+  &#x1F525; <span class="urgent-pulse uppercase">Flash Sale: Today Only!</span> FREE SHIPPING OVER $50 + FREE MYSTERY GIFT &#x1F381;
+</div>
+
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
+  <div class="layout-container flex h-full grow flex-col">
+
+    <!-- Top Nav -->
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-20 py-3 sticky top-10 z-40">
+      <div class="flex items-center gap-8">
+        <div class="flex items-center gap-3 text-primary">
+          <span class="material-symbols-outlined text-3xl font-bold">auto_awesome</span>
+          <h2 class="text-slate-900 dark:text-white text-xl font-extrabold leading-tight tracking-tight">Aura Wellness</h2>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+          <a class="text-slate-700 dark:text-slate-200 text-sm font-semibold hover:text-primary transition-colors" href="#">Shop</a>
+          <a class="text-slate-700 dark:text-slate-200 text-sm font-semibold hover:text-primary transition-colors" href="#">Bundles</a>
+          <a class="text-slate-700 dark:text-slate-200 text-sm font-semibold hover:text-primary transition-colors" href="#">TikTok Favorites</a>
+        </div>
+      </div>
+      <div class="flex flex-1 justify-end gap-4">
+        <button class="flex items-center justify-center p-2 rounded-full hover:bg-primary/10 text-slate-700 dark:text-slate-200">
+          <span class="material-symbols-outlined">search</span>
+        </button>
+        <button class="flex min-w-[100px] cursor-pointer items-center justify-center gap-2 rounded-full h-11 px-5 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/30 hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-lg">shopping_bag</span>
+          <span class="truncate">Cart (0)</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex flex-col flex-1">
+      <!-- Hero Section -->
+      <div class="px-6 md:px-20 py-12 md:py-20 bg-gradient-to-br from-primary/5 via-transparent to-primary/10">
+        <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center gap-12">
+          <div class="flex flex-col gap-8 flex-1 text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 text-white w-fit animate-bounce">
+              <span class="material-symbols-outlined text-sm">trending_up</span>
+              <span class="text-xs font-bold uppercase tracking-widest">As seen on TikTok</span>
+            </div>
+            <div class="flex flex-col gap-4">
+              <h1 class="text-slate-900 dark:text-white text-5xl md:text-7xl font-black leading-[1.1] tracking-tighter">
+                TikTok's Favorite <br/>
+                <span class="text-primary italic">Focus &amp; Glow</span> Stack
+              </h1>
+              <p class="text-slate-600 dark:text-slate-300 text-lg md:text-xl font-medium max-w-xl">
+                Limited-time bundles, free shipping over $50. Grab yours before this drop ends. Join 50,000+ creators glowing up.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-4">
+              <button class="flex min-w-[180px] cursor-pointer items-center justify-center rounded-xl h-14 px-8 bg-primary text-white text-lg font-bold shadow-xl shadow-primary/40 hover:bg-primary/90 transition-all">
+                Shop Now
+              </button>
+              <button class="flex min-w-[180px] cursor-pointer items-center justify-center rounded-xl h-14 px-8 border-2 border-primary/20 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-lg font-bold hover:bg-primary/5 transition-all">
+                Learn More
+              </button>
+            </div>
+            <div class="flex items-center gap-4 text-sm font-medium text-slate-500 italic">
+              <div class="flex -space-x-3">
+                <img class="size-10 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZeSZ9Rku7D17HE3JPJkKW-eZiDPOAXHSVwXWtNcj2o2szNXShHexV4DIgHnFR55ya1_x-abwTGSbl9ztKNfIJCUE_1xPVTTTzUvyieNOWl3YqTh9_iaSxJylGTZK30WxC6NDl_G4i4zJJRlUuc1IypW_-4-3ZFDy1PVLDBrzVbiNdU8_iA8JPy8EiFW5lePICxV5Z0iBW_Oow7cGIvXkHkyYAddrJdnAQyWAr89uPziz5IpvQ-nZ2662ujGX-PGpXWj23OEHNruI"/>
+                <img class="size-10 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_XyholWKefo0dKaGV6qkGsdNt_88pS0jRL6HkAkj7gN4FlVGSx6AdoofKGuZRfSUZISzhQ6eOVhq79TSiNuL8YogF1R23BJfZVz9dHoxMqHUqfI19nUNByCxCnaGTAFGFkRXQCfvctpC763IWFuXJaahNyE8bHciX-akoSx1qrZ3aPDLXUyvw1P0kg_7KX9MYZP8Sw7_AC8sFjXFpPb7zfRkk-A6wI2G-_NasRd5D4vV-yOgLMsPaXGcde66eSQqQRuvLWt_f06E"/>
+                <img class="size-10 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOKO5xjgxpqzGUvUTxuMmjeuUDtoXmgGDaxp2HSmry9IZP7X7dCzg-ztP7Hu0rQMtIK6nVmjfLGZV0uikjqmg9SQPo6DiDw_mr40_DvGjspCuOFdNDVjdb1Kqo24Jge9HO6oAkgDnVkr_LSVGCGKymqaVONsIclhIz_bzaDtJSJeF7AzgQMEd28U0simkxrdxqSHoUi_VHSGDpI1UY8GPMWdbY71Iukw1pF_9hAjjnCaUvqcCdDW4sVwI3EtD44cD2kuIBolnjqAM"/>
+              </div>
+              <span>+2.4M views this week</span>
+            </div>
+          </div>
+          <div class="flex-1 relative w-full max-w-[400px]">
+            <div class="relative rounded-[2.5rem] border-[8px] border-slate-900 bg-slate-900 overflow-hidden shadow-2xl aspect-[9/19]">
+              <img class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLJ_2GFaVoFmU81SoHfQ3_573Nk-16udwI8Aba_ubFp51gGbXmQXKwIs0VtG7Catw8T8dtRC8WvTRygXBIQklL0-6RUnP8aM4aec8WAzAJezWk6oHK59R_n3RJ0kqyrWVpbXFROGzCH_aM2N3yeb__v_xKRBIsHiUrzc9bPpEugeX88epJBdEoSxIOq2d7oStI_QLb4fbLXxRcaa5GVIbT2K3eyegR7tUSsSyDrch7Hq3RH5nNfulq5lIoSQU5rUhkVqMW39TBszs"/>
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                <div class="bg-primary/30 backdrop-blur-md p-4 rounded-full mb-4">
+                  <span class="material-symbols-outlined text-white text-4xl">play_circle</span>
+                </div>
+                <p class="text-white font-bold text-xl uppercase tracking-tighter">Watch the Hype</p>
+              </div>
+            </div>
+            <div class="absolute -top-10 -right-10 size-32 bg-primary rounded-2xl flex items-center justify-center rotate-12 shadow-xl p-4 hidden lg:flex">
+              <img class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXIjB1bcYnsGhy9ryKJXu3JOsw0KcupJnwyjofEP6WMX9fIQh9CzKX_wa2PL2CXesO6PVqEToffAcqF2VnsIBcHbuUUVwBUCdIib-CiCL-EuHzt_J_m5R64RvTXYwEStInW9aO1e39S8mgUCPmtauhzS9S7qOWzupOgB6eqIYvxF4PUZ7hpmBpbgFeLBZDocAg2u9kJj2c3U1_k7vSAviUKegQqD84lyRscLREQNmOvBBs-2iu2SdLtpqQy2kbWH65-0J_HqVxRS4"/>
+            </div>
+            <div class="absolute -bottom-6 -left-10 size-28 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center -rotate-12 shadow-xl p-4 hidden lg:flex">
+              <span class="material-symbols-outlined text-primary text-5xl">auto_awesome</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Strip -->
+      <div class="bg-slate-900 dark:bg-primary/20 py-6 overflow-hidden whitespace-nowrap">
+        <div class="flex items-center gap-12 px-6 md:px-20">
+          <div class="flex items-center gap-3 text-white">
+            <span class="material-symbols-outlined text-primary">verified</span>
+            <span class="text-lg font-bold uppercase tracking-widest">Insane glow</span>
+          </div>
+          <div class="flex items-center gap-3 text-white">
+            <span class="material-symbols-outlined text-primary">nights_stay</span>
+            <span class="text-lg font-bold uppercase tracking-widest">Knockout sleep</span>
+          </div>
+          <div class="flex items-center gap-3 text-white">
+            <span class="material-symbols-outlined text-primary">bolt</span>
+            <span class="text-lg font-bold uppercase tracking-widest">No-crash focus</span>
+          </div>
+          <div class="hidden lg:flex items-center gap-3 text-white">
+            <span class="material-symbols-outlined text-primary">spa</span>
+            <span class="text-lg font-bold uppercase tracking-widest">Vegan Friendly</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Best Sellers -->
+      <section class="px-6 md:px-20 py-20 bg-white dark:bg-background-dark">
+        <div class="max-w-[1200px] mx-auto">
+          <div class="flex justify-between items-end mb-12">
+            <div>
+              <h2 class="text-slate-900 dark:text-white text-4xl font-black tracking-tight mb-2">The Viral Hits</h2>
+              <p class="text-slate-500 dark:text-slate-400 font-medium text-lg">Your shortcut to the perfect routine.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="group relative flex flex-col gap-4 rounded-[2rem] bg-background-light dark:bg-slate-800 p-6 border-4 border-primary shadow-2xl scale-105 z-10">
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-6 py-2 rounded-full font-black text-sm uppercase tracking-widest shadow-lg">#1 TikTok Pick</div>
+              <div class="w-full aspect-square rounded-2xl overflow-hidden bg-white shadow-inner">
+                <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI5mkdwVEH89TkjmNK4AiIyM2-HPS5_cO20xUXPoo4LvvrxjDHx1fiOm_jSTRDnjjZu5oap8sx4bYkyDuQQUlKhJLGrKcE9uRrSKTkbvzXXuyd1RGAo1jXaFbdh_aYMNb1elZXhk53NZmiQd5qX0DytgHyR8kfr2tZV7orXpuBle7SSl_GoStQCAkh2CeettU1kI20ztaJ9rLtWZGK2gbdaFxU5O8hLMKv9GlCZjm2LsaDCFVW_UoalW8EfSmeOQ8iafyZ6xk8zpI"/>
+              </div>
+              <div class="flex flex-col gap-2">
+                <div class="flex justify-between items-start">
+                  <h3 class="text-slate-900 dark:text-white text-2xl font-extrabold tracking-tight">Focus &amp; Glow Stack</h3>
+                  <span class="text-primary font-black text-xl">$89.00</span>
+                </div>
+                <p class="text-slate-500 dark:text-slate-400 font-medium">Trending Now: The ultimate duo for brain fog and dull skin.</p>
+              </div>
+              <div class="mt-auto">
+                <button class="add-to-cart w-full py-4 rounded-xl bg-primary text-white font-black text-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
+                  <span class="material-symbols-outlined">add_shopping_cart</span> Add to Cart
+                </button>
+              </div>
+            </div>
+            <div class="group flex flex-col gap-4 rounded-[2rem] bg-white dark:bg-slate-900 p-6 border border-slate-200 dark:border-slate-800 shadow-xl">
+              <div class="w-full aspect-square rounded-2xl overflow-hidden bg-background-light dark:bg-slate-800 shadow-inner">
+                <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3Tn_7k_GuTPCp-sQW-yxD3QdfvWpZ8BV_JxOpUQ6ppCJUUvyXM7rxBwwy9DvnpbdoFeo9la9iR1dTop2Ut3grPlU9EUwpNYrwXxBbeLCMWNDObAzH-ljDIPRkdmkb3TvYJDtf0HKfSUCZVUvhnYiwqM8XJqriBPc8OVdJo9sC02_Agw-BafrRSxkart4kB_kfZBayKSq6Q9j8LcFlQ8uo84DKcsdfHCbLiJNN8OJonqdS0GrKpiGCoy0SLsu56KkfbUXG87rND7A"/>
+              </div>
+              <div class="flex flex-col gap-2">
+                <div class="flex justify-between items-start">
+                  <h3 class="text-slate-900 dark:text-white text-2xl font-extrabold tracking-tight">Knockout Sleep</h3>
+                  <span class="text-slate-900 dark:text-white font-black text-xl">$45.00</span>
+                </div>
+                <p class="text-slate-500 dark:text-slate-400 font-medium">Limited Edition: Wake up refreshed, not groggy.</p>
+              </div>
+              <div class="mt-auto">
+                <button class="add-to-cart w-full py-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-black text-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">Quick Add</button>
+              </div>
+            </div>
+            <div class="group flex flex-col gap-4 rounded-[2rem] bg-white dark:bg-slate-900 p-6 border border-slate-200 dark:border-slate-800 shadow-xl">
+              <div class="w-full aspect-square rounded-2xl overflow-hidden bg-background-light dark:bg-slate-800 shadow-inner">
+                <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADJE7QocEIKEse7W49C2yWQ7vIBWZtxG9P1LMUeJRw7mtPEaCjZQVQlpfhTSJfpyj9WmPN-WUB0Q_q_CcMMfD3C1CO3FXVjGREPmzJw72_KMPRxUchvRgZ-CoqcJPUpJUgsv7ZLdlbIHbA4a1jttWIZIr-koPQEqXg9MppVzb1JoFPGXRt8zzzb6aQdJPUTDRBpiM53zOr_Ad9ZqSKWoacVVMmGrQJ5HVKnC2hCYff5MQNQEneXjLSKNY2LI_sGg_fUl6CXlB1B8g"/>
+              </div>
+              <div class="flex flex-col gap-2">
+                <div class="flex justify-between items-start">
+                  <h3 class="text-slate-900 dark:text-white text-2xl font-extrabold tracking-tight">Energy Mist</h3>
+                  <span class="text-slate-900 dark:text-white font-black text-xl">$32.00</span>
+                </div>
+                <p class="text-slate-500 dark:text-slate-400 font-medium">Best Seller: Instant refreshment for your skin and soul.</p>
+              </div>
+              <div class="mt-auto">
+                <button class="add-to-cart w-full py-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-black text-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">Quick Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UGC Testimonials -->
+      <section class="px-6 md:px-20 py-20 bg-background-light dark:bg-background-dark/50">
+        <div class="max-w-[1200px] mx-auto text-center">
+          <h2 class="text-slate-900 dark:text-white text-3xl md:text-5xl font-black mb-12 italic tracking-tighter">Verified Creator Results</h2>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-lg border-b-4 border-primary text-left flex flex-col gap-4">
+              <div class="flex items-center gap-3">
+                <img class="size-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAobE0-HeDjweu4aBBSNHBFdcWg8QmAwSd-p_IVb9Nz_G1TNGAEVMMj9maguCpOxRD1-fBpFTB4dw7jyDnWHcuJpySc2-rzWoEW6-L9U0GGQvbMYimwyQ6z9FxckpJRea-njQkmyyAtXCkTdQzMMvZIYt2YBGwxAbzgcmNbNGFRVwbIWv7bR8z1PPCpzFTVNkCfVufo2VZfTQmhYGaxMA-R4bEcoFooTu3ZjuDkz7Uc5hGq6-6AwY2DatwaPs37sNtfQ8IEjYeh8bE"/>
+                <div><p class="font-bold text-slate-900 dark:text-white">@glowbyjess</p><p class="text-xs text-slate-500">120K followers</p></div>
+              </div>
+              <p class="text-slate-600 dark:text-slate-300 italic font-medium">"I've tried every viral supplement and this is the ONLY one that actually cleared my brain fog. Glow is literal."</p>
+              <div class="flex gap-1 text-yellow-400">
+                <span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span>
+              </div>
+            </div>
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-lg border-b-4 border-[#25F4EE] text-left flex flex-col gap-4">
+              <div class="flex items-center gap-3">
+                <img class="size-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo2v4hDTq7vQsnz8sLzkBp7zaLufEYZs517ZOyGjc51PxH00duzsdlYqMdg6iPMqED_SCXylOa5o05CrU-Fbo12z-hOFDKl5BAAlZAFzjI_AldFawVO4UfEKRTUke2Z4aowaGMQ0mNue3mJHk0u45kPsfNV5SwbgpHYqcB9IGMus54nCNCzpqtb3UPs3Xl4gnXMRP8LVso4sG2McNXMHNsfG1kbcIfd2sIoNPodQVgfTyMiz6pCrBhNNNM4HRFIvrBQx-hJVOBnvk"/>
+                <div><p class="font-bold text-slate-900 dark:text-white">@fitnessfin</p><p class="text-xs text-slate-500">85K followers</p></div>
+              </div>
+              <p class="text-slate-600 dark:text-slate-300 italic font-medium">"No crash is real. I use the mist before my morning run and the energy stays consistent all day."</p>
+              <div class="flex gap-1 text-yellow-400">
+                <span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span>
+              </div>
+            </div>
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-lg border-b-4 border-[#FE2C55] text-left flex flex-col gap-4">
+              <div class="flex items-center gap-3">
+                <img class="size-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAljW1FhGIrUXQfD-3xU4enSM4AS5Chg6rBeoJU-Ed8tvrepu_TN2VCzIhH05OEIJ80LG2i-dSZJPfs4hm0WjJPa1XOk-UVN15pZ1iBeJD6b8fvo-Ji4wfB1RagGuknxTh1972xlR3W7SytK08CqHMEx4lbgrGHlNBHPlVxpW-BXR3clpH2Dntz_0A4Zu8yXT_zt5ibvlOHahwIHsClVC0D9hpbAxI5SvD5PO8qAnswP39L9iOa-fUxuIsx-6wIqK3mf-JB7MDQf5A"/>
+                <div><p class="font-bold text-slate-900 dark:text-white">@sarahs_skin</p><p class="text-xs text-slate-500">42K followers</p></div>
+              </div>
+              <p class="text-slate-600 dark:text-slate-300 italic font-medium">"The sleep stack is the GOAT. I used to wake up 5 times a night, now I'm out like a light."</p>
+              <div class="flex gap-1 text-yellow-400">
+                <span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span>
+              </div>
+            </div>
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-lg border-b-4 border-primary text-left flex flex-col gap-4">
+              <div class="flex items-center gap-3">
+                <img class="size-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgi4bSAcml8wAQ3UIMVysduQDKv9i0wHL1I1aO8TIBuM2mkwZMVi3LYXkxXDRgt7ZonTCKzwRg-2UJ9FxZkaxCaXzERdRy6UDGsTCpIWdBId0_kRbZnGetmuDyXMQ2h2uW_e7wPLtfbDCay7tErAKjLfsqFRbwbfEUEknErmTrGQFWLqo_nG701X2AKkYNI-64e-p_rB6rGZfKkCsB8V617WO4_gKmZtX6aNynuAPVtwbXdXJJrG0RPHhljD7PwFn86Z6ytyce26o"/>
+                <div><p class="font-bold text-slate-900 dark:text-white">@dailydose</p><p class="text-xs text-slate-500">210K followers</p></div>
+              </div>
+              <p class="text-slate-600 dark:text-slate-300 italic font-medium">"Obsessed. Simple as that. The packaging is aesthetic and the results are better."</p>
+              <div class="flex gap-1 text-yellow-400">
+                <span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span><span class="material-symbols-outlined text-[16px] fill-1">star</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOMO CTA -->
+      <section class="bg-primary text-white py-20 px-6 overflow-hidden relative">
+        <div class="absolute inset-0 opacity-10 tiktok-gradient"></div>
+        <div class="max-w-[800px] mx-auto text-center relative z-10">
+          <h2 class="text-4xl md:text-6xl font-black tracking-tighter mb-6 uppercase">Don't Get Left Behind</h2>
+          <p class="text-xl md:text-2xl font-bold opacity-90 mb-10">Our last drop sold out in 4 hours. Secure your stack now.</p>
+          <button class="bg-white text-primary px-12 py-5 rounded-full text-xl font-black shadow-2xl hover:scale-110 transition-transform">
+            SHOP THE DROP NOW
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- AOS Demo Controls -->
+    <section class="py-12 bg-primary/5 border-t-2 border-primary/20">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h3 class="text-lg font-bold text-primary mb-2">Adaptive-OS Demo Controls</h3>
+        <p class="text-sm text-slate-600 mb-2">Current Vibe: <span class="font-bold text-primary">Casual (TikTok Traffic)</span></p>
+        <p class="text-sm text-slate-500 mb-6">This entire page was dynamically selected based on the <code class="bg-white px-1 rounded">utm_source=tiktok</code> parameter.</p>
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+          <a href="/?utm_source=tiktok&utm_campaign=summer_vibes" class="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg shadow-sm">TikTok Traffic (Current)</a>
+          <a href="/?utm_source=pinterest&utm_campaign=quiet_minimal" class="px-4 py-2 bg-white text-sm font-medium rounded-lg shadow-sm hover:shadow transition border border-primary/20">Pinterest Traffic</a>
+          <a href="/?utm_source=ig&utm_campaign=bold_fitness" class="px-4 py-2 bg-white text-sm font-medium rounded-lg shadow-sm hover:shadow transition border border-primary/20">Instagram Traffic</a>
+          <a href="/" class="px-4 py-2 bg-white text-sm font-medium rounded-lg shadow-sm hover:shadow transition border border-gray-200 text-gray-600">Direct (Default)</a>
+        </div>
+        <div class="flex justify-center gap-3">
+          <button onclick="AOS.track('conversion', { product: 'demo' })" class="px-5 py-2.5 bg-green-600 text-white text-sm font-semibold rounded-lg hover:bg-green-700 transition">Simulate Conversion</button>
+          <button onclick="AOS.track('click', { element: 'demo-cta' })" class="px-5 py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition">Simulate Click</button>
+        </div>
+        <div id="aos-debug" class="mt-6 text-xs text-left bg-white rounded-lg p-4 border border-primary/20 font-mono max-w-xl mx-auto">
+          <div class="font-bold text-primary mb-1">AOS Debug Info:</div>
+          <div id="aos-debug-content">Loading...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12 px-6 md:px-20 border-t border-slate-800">
+      <div class="max-w-[1200px] mx-auto text-center text-xs text-slate-500">
+        <p>&copy; 2024 Aura Wellness. All rights reserved. | Demo store for Adaptive-OS</p>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<script>
+  setTimeout(function() {
+    var content = document.getElementById('aos-debug-content');
+    if (content) {
+      var sessionId = sessionStorage.getItem('aos_session_id') || 'none';
+      var variationId = sessionStorage.getItem('aos_variation_id') || 'none';
+      var params = new URLSearchParams(window.location.search);
+      var agentRouted = params.get('aos_routed') === '1' ? 'Yes (Agent)' : 'No (Direct)';
+      content.innerHTML =
+        'Session: ' + sessionId + '<br>' +
+        'Variation: ' + variationId + '<br>' +
+        'Active Vibe: <strong>casual (TikTok)</strong><br>' +
+        'Agent Routed: <strong>' + agentRouted + '</strong><br>' +
+        'UTM Source: ' + (params.get('utm_source') || 'none') + '<br>' +
+        'Referrer: ' + (document.referrer || 'none');
+    }
+  }, 2000);
+</script>
+</body></html>

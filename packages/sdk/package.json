@@ -1,0 +1,17 @@
+{
+  "name": "@aos/sdk",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/aos.js",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --outfile=dist/aos.js --format=iife --global-name=AOS --minify",
+    "dev": "esbuild src/index.ts --bundle --outfile=dist/aos.js --format=iife --global-name=AOS --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.3",
+    "typescript": "^5.7.0"
+  },
+  "dependencies": {
+    "@aos/shared": "*"
+  }
+}

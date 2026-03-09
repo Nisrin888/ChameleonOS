@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+.pnp.*
+.yarn/
+
+# Build outputs
+dist/
+.next/
+.turbo/
+out/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+*.egg
+.eggs/
+
+# Environment — never commit secrets
+.env
+.env.local
+.env.*.local
+apps/api/.env
+
+# Claude Code — local context, not for repo
+.claude/
+CLAUDE.md
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cloudflare
+.wrangler/
+.dev.vars
+
+# Testing
+coverage/
+.pytest_cache/
+htmlcov/
+
+# Misc
+*.log
+*.tsbuildinfo

@@ -1,0 +1,11 @@
+name = "aos-edge"
+main = "src/index.ts"
+compatibility_date = "2025-02-20"
+
+[vars]
+AOS_API_URL = "http://localhost:8000"
+ENVIRONMENT = "development"
+
+# Upstash Redis (set via `wrangler secret put` for production)
+# UPSTASH_REDIS_REST_URL = ""
+# UPSTASH_REDIS_REST_TOKEN = ""

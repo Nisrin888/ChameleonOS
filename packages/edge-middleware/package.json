@@ -1,0 +1,20 @@
+{
+  "name": "@aos/edge-middleware",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250214.0",
+    "typescript": "^5.7.0",
+    "wrangler": "^4.70.0"
+  },
+  "dependencies": {
+    "@aos/shared": "*",
+    "esbuild": "0.27.3"
+  }
+}

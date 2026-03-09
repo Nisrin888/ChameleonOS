@@ -1,0 +1,11 @@
+/* Custom styles for Aura Wellness demo store */
+
+/* Smooth transition when AOS swaps content */
+[data-aos-slot] {
+  transition: opacity 0.3s ease;
+}
+
+/* Ensure hero image transitions smoothly */
+[data-aos-slot="hero-image"] {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
