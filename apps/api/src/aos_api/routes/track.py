@@ -27,9 +27,10 @@ async def track_event(
     if not tenant:
         raise HTTPException(status_code=404, detail="Invalid public key")
 
-    # Resolve session for context
+    # Resolve session for context (vibe + utm_source)
     session_data = await session_service.get_session(redis, request.session_id)
     vibe = session_data.get("vibe", "default") if session_data else "default"
+    utm_source = session_data.get("utm_source") if session_data else None
 
     # Record event in background
     background_tasks.add_task(
@@ -41,6 +42,7 @@ async def track_event(
         request.event_type,
         request.event_name,
         vibe,
+        utm_source,
         request.metadata,
     )
 
@@ -55,6 +57,7 @@ async def _record_and_optimize(
     event_type: str,
     event_name: str | None,
     vibe: str,
+    utm_source: str | None,
     metadata: dict | None,
 ):
     """Background task: persist event + update MAB on conversion."""
@@ -73,7 +76,7 @@ async def _record_and_optimize(
             event_type=event_type,
             event_name=event_name,
             referrer=None,
-            utm_source=None,
+            utm_source=utm_source,
             vibe_segment=vibe,
             metadata=metadata,
         )

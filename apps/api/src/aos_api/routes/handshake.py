@@ -73,6 +73,7 @@ async def handshake(
         vibe=vibe,
         slots=slots,
         is_control=is_control,
+        utm_source=request.context.utm_source,
     )
 
     # 5. Record impression events asynchronously

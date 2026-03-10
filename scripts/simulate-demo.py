@@ -9,8 +9,7 @@ conversion rates — proving that vibe-matched pages outperform the default.
 Usage:
     cd apps/api
     .venv/Scripts/Activate.ps1   (Windows)
-    python ../../scripts/simulate-demo.py
-    python ../../scripts/simulate-demo.py --fast     # Skip delays, quick data population
+    python ../../scripts/simulate-demo.py --clean --fast
 
 Requires: API running on localhost:8000 with seeded database.
 """
@@ -70,12 +69,13 @@ TRAFFIC_SOURCES = [
 
 TOTAL_VISITORS = 600
 PUBLIC_KEY = "pk_demo_001"
+FAST_MODE = False
 
 
 def print_header():
     print()
     print("=" * 60)
-    print("  Adaptive-OS — Demo Traffic Simulator")
+    print("  ChameleonOS — Demo Traffic Simulator")
     print("=" * 60)
     print()
     print(f"  Simulating {TOTAL_VISITORS} visitors across {len(TRAFFIC_SOURCES)} sources")
@@ -94,7 +94,21 @@ def print_source_plan():
     print()
 
 
-FAST_MODE = False
+async def clean_old_events():
+    """Delete all existing events so the dashboard shows only this simulation's data."""
+    print("  Cleaning old events from database...")
+
+    try:
+        from aos_api.db.session import engine
+        from sqlalchemy import text
+        async with engine.begin() as conn:
+            result = await conn.execute(text("DELETE FROM events"))
+            print(f"  Deleted {result.rowcount} old events")
+        print()
+    except Exception as e:
+        print(f"  Warning: Could not clean events ({e})")
+        print("  Make sure you're running from apps/api with the venv active")
+        print()
 
 
 async def simulate_visitor(client: httpx.AsyncClient, source: dict) -> dict:
@@ -160,6 +174,10 @@ async def simulate_visitor(client: httpx.AsyncClient, source: dict) -> dict:
 
 async def run_simulation():
     print_header()
+
+    if CLEAN_MODE:
+        await clean_old_events()
+
     print_source_plan()
 
     # Build visitor queue
@@ -215,7 +233,6 @@ async def run_simulation():
 
     total_impressions = 0
     total_conversions = 0
-    control_cvr = 0
 
     for name, data in stats.items():
         imp = data["impressions"]
@@ -223,9 +240,6 @@ async def run_simulation():
         cvr = (conv / imp * 100) if imp > 0 else 0
         total_impressions += imp
         total_conversions += conv
-
-        if data["vibe"] == "default":
-            control_cvr = cvr
 
         cvr_str = f"{cvr:.1f}%"
         print(f"  {name:<20s} {data['vibe']:<12s} {imp:>6d} {conv:>6d} {cvr_str:>8s}")
@@ -236,24 +250,37 @@ async def run_simulation():
     print(f"  {'TOTAL':<20s} {'':12s} {total_impressions:>6d} {total_conversions:>6d} {overall_cvr:.1f}%")
     print()
 
-    # Calculate lift
-    if control_cvr > 0:
-        # Average CVR of vibe-matched sources
-        vibe_matched = [s for s in stats.values() if s["vibe"] != "default" and s["impressions"] > 0]
-        if vibe_matched:
-            vibe_cvr = sum(s["conversions"] for s in vibe_matched) / sum(s["impressions"] for s in vibe_matched) * 100
+    # Calculate lift — combine ALL default sources for control CVR
+    control_sources = [s for s in stats.values() if s["vibe"] == "default"]
+    control_imp = sum(s["impressions"] for s in control_sources)
+    control_conv = sum(s["conversions"] for s in control_sources)
+    control_cvr = (control_conv / control_imp * 100) if control_imp > 0 else 0
+
+    vibe_matched = [s for s in stats.values() if s["vibe"] != "default" and s["impressions"] > 0]
+    if vibe_matched and control_imp > 0:
+        vibe_imp = sum(s["impressions"] for s in vibe_matched)
+        vibe_conv = sum(s["conversions"] for s in vibe_matched)
+        vibe_cvr = (vibe_conv / vibe_imp * 100) if vibe_imp > 0 else 0
+
+        if control_cvr > 0:
             lift = ((vibe_cvr - control_cvr) / control_cvr) * 100
-            print(f"  ┌──────────────────────────────────────────────────┐")
-            print(f"  │  VIBE-MATCHED CVR:  {vibe_cvr:.1f}%                        │")
-            print(f"  │  CONTROL CVR:       {control_cvr:.1f}%                        │")
-            print(f"  │  LIFT:              +{lift:.0f}%                          │")
-            print(f"  │                                                  │")
-            print(f"  │  Vibe-matched pages convert {lift:.0f}% better          │")
-            print(f"  │  than generic default pages.                     │")
-            print(f"  └──────────────────────────────────────────────────┘")
+        else:
+            lift = 100  # Control got 0 conversions — infinite lift
+
+        print(f"  ┌──────────────────────────────────────────────────┐")
+        print(f"  │  VIBE-MATCHED CVR:  {vibe_cvr:>5.1f}%  ({vibe_conv}/{vibe_imp}){'':<13}│")
+        print(f"  │  CONTROL CVR:       {control_cvr:>5.1f}%  ({control_conv}/{control_imp}){'':<14}│")
+        if control_cvr > 0:
+            print(f"  │  LIFT:              +{lift:>4.0f}%{'':<27}│")
+        else:
+            print(f"  │  LIFT:              ∞  (control got 0 conversions) │")
+        print(f"  │                                                  │")
+        print(f"  │  Vibe-matched pages convert significantly        │")
+        print(f"  │  better than generic default pages.              │")
+        print(f"  └──────────────────────────────────────────────────┘")
     print()
 
-    # Try to fetch MAB weights from API
+    # Fetch live dashboard summary from API
     try:
         async with httpx.AsyncClient() as client:
             resp = await client.get(
@@ -264,11 +291,11 @@ async def run_simulation():
                 perf = resp.json()
                 summary = perf.get("summary", {})
                 print("  ┌──────────────────────────────────────────────────┐")
-                print(f"  │  DASHBOARD SUMMARY (Live)                        │")
+                print(f"  │  DASHBOARD SUMMARY (Live from API)               │")
                 print(f"  │  Total Impressions:  {summary.get('total_impressions', 0):<28}│")
                 print(f"  │  Total Conversions:  {summary.get('total_conversions', 0):<28}│")
                 print(f"  │  Overall CVR:        {summary.get('overall_cvr', 0)*100:.2f}%{'':<23}│")
-                print(f"  │  Lift vs Control:    +{summary.get('lift_vs_control', 0):.1f}%{'':<22}│")
+                print(f"  │  Lift vs Control:    {summary.get('lift_vs_control', 0):+.1f}%{'':<23}│")
                 print(f"  └──────────────────────────────────────────────────┘")
                 print()
     except Exception:
@@ -283,15 +310,19 @@ async def run_simulation():
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Adaptive-OS Demo Traffic Simulator")
+    parser = argparse.ArgumentParser(description="ChameleonOS Demo Traffic Simulator")
     parser.add_argument("--fast", action="store_true", help="Skip delays for quick data population")
+    parser.add_argument("--clean", action="store_true", help="Delete old events before simulating (recommended)")
     parser.add_argument("--visitors", type=int, default=600, help="Number of visitors to simulate")
     args = parser.parse_args()
 
     FAST_MODE = args.fast
+    CLEAN_MODE = args.clean
     TOTAL_VISITORS = args.visitors
 
     if FAST_MODE:
-        print("  [FAST MODE] Skipping browse delays for quick population")
+        print("  [FAST MODE] Skipping browse delays")
+    if CLEAN_MODE:
+        print("  [CLEAN MODE] Will delete old events first")
 
     asyncio.run(run_simulation())

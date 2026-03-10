@@ -31,6 +31,7 @@ async def create_session(
     vibe: str,
     slots: list[dict],
     is_control: bool,
+    utm_source: str | None = None,
 ) -> None:
     """Create a new session in Redis with 24hr TTL."""
     session_data = {
@@ -39,5 +40,6 @@ async def create_session(
         "vibe": vibe,
         "slots": slots,
         "is_control": is_control,
+        "utm_source": utm_source,
     }
     await redis.set(session_key(session_id), json.dumps(session_data), ex=SESSION_TTL)

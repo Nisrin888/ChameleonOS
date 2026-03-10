@@ -62,19 +62,21 @@ async def record_impressions(
     utm_source: str | None,
     vibe: str,
 ) -> None:
-    """Record impression events for all slots in a variation."""
-    for slot in slots:
-        await record_event(
-            db=db,
-            redis=redis,
-            tenant_id=tenant_id,
-            session_id=session_id,
-            variation_id=variation_id,
-            slot_id=slot.get("slot_id"),
-            event_type="impression",
-            event_name=None,
-            referrer=referrer,
-            utm_source=utm_source,
-            vibe_segment=vibe,
-            metadata=None,
-        )
+    """Record a single impression event per handshake (per visitor)."""
+    # Record one impression per visitor, not per slot.
+    # This keeps impressions aligned with conversions (1:1 per visitor).
+    first_slot = slots[0] if slots else {}
+    await record_event(
+        db=db,
+        redis=redis,
+        tenant_id=tenant_id,
+        session_id=session_id,
+        variation_id=variation_id,
+        slot_id=first_slot.get("slot_id"),
+        event_type="impression",
+        event_name=None,
+        referrer=referrer,
+        utm_source=utm_source,
+        vibe_segment=vibe,
+        metadata=None,
+    )
